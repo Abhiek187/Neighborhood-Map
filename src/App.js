@@ -1,18 +1,23 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import { withScriptjs, withGoogleMap, GoogleMap, Marker } from 'react-google-maps';
 import './App.css';
 
 class App extends Component {
   render() {
+    // Create Map component
+    const Map = withScriptjs(withGoogleMap(props => (
+      <GoogleMap defaultCenter={{lat: 40.441815, lng: -74.511608}} defaultZoom={13}>
+        <Marker position={{lat: 40.4288947, lng: -74.5139918}}/>
+      </GoogleMap>
+    )));
+
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <Map
+          googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyAgW5OHRMNIfawf6DfY_UpnK1MqtJyN87E&v=3"
+          loadingElement={<div className="map-loading"/>}
+          containerElement={<div className="map-container"/>}
+          mapElement={<div className="map"/>}/>
       </div>
     );
   }
