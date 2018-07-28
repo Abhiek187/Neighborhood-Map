@@ -12,13 +12,13 @@
 
 .list-search {
 	width: 80%;
-	height: 20px;
+	height: 25px;
 }
 
 .list-submit {
 	background-color: blue;
 	color: white;
-	height: 26px; /* Height must be 6px higher than .list-search */
+	height: 31px; /* Height must be 6px higher than .list-search */
 }
 
 .list-locations {
