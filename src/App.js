@@ -3,9 +3,9 @@ import React, {Component} from 'react';
 import {withScriptjs, withGoogleMap, GoogleMap, Marker, InfoWindow} from 'react-google-maps';
 import './App.css';
 
-// Create Map component
+// Create Map component at the very top to render the entire map once
 const Map = withScriptjs(withGoogleMap(props => (
-  <GoogleMap defaultCenter={{lat: 40.441643, lng: -74.511790}} defaultZoom={13}>
+  <GoogleMap defaultCenter={{lat: 40.441643, lng: -74.511790}} defaultZoom={12}>
     {props.markers.map(marker => (
       <Marker key={marker.id} title={marker.title} position={marker.position}
         defaultAnimation={google.maps.Animation.DROP} onClick={() => {props.toggleInfoWindow(marker)}}>
@@ -65,6 +65,21 @@ class App extends Component {
 
     return (
       <div className="App">
+        <div className="list-view">
+          <h1 className="list-title">Neighborhood Map</h1>
+          <span className="list-searchbox">
+            <input className="list-search" type="text" placeholder="Search location"/>
+            <input className="list-submit" type="submit" value="Search"/>
+          </span>
+          <div className="list-locations">
+            {markers.map(marker => (
+              <div key={marker.id}>
+                <p>{marker.title}</p>
+                <hr/>
+              </div>
+            ))}
+          </div>
+        </div>
         <Map
           googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyAgW5OHRMNIfawf6DfY_UpnK1MqtJyN87E&v=3"
           loadingElement={<div className="map-loading"/>}

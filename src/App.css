@@ -1,8 +1,37 @@
+.list-view {
+	height: 100vh;
+	width: 25%;
+	background-color: black;
+	color: gray;
+	float: left;
+}
+
+.list-title {
+	text-align: center;
+}
+
+.list-search {
+	width: 80%;
+	height: 20px;
+}
+
+.list-submit {
+	background-color: blue;
+	color: white;
+	height: 26px; /* Height must be 6px higher than .list-search */
+}
+
+.list-locations {
+	margin: 5% 10%;
+}
+
 .map,
 .map-loading {
-  height: 100%;
+	height: 100%;
 }
 
 .map-container {
-  height: 100vh; /* Required for map to appear */
+	height: 100vh; /* Required for map to appear */
+	width: 75%;
+	float: right;
 }
