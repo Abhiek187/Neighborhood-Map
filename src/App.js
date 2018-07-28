@@ -22,9 +22,9 @@ class App extends Component {
     // Initial markers
     markers: [
       {
-        id: 'regal-commerece-center-stadium-18',
-        title: 'Regal Commerce Center Stadium 18',
-        position: {lat: 40.443312, lng: -74.503794},
+        id: 'costco-wholesale',
+        title: 'Costco Wholesale',
+        position: {lat: 40.436565, lng: -74.507282},
         animation: google.maps.Animation.DROP,
         showInfo: false
       },
@@ -32,13 +32,6 @@ class App extends Component {
         id: 'crystal-springs-family-waterpark',
         title: 'Crystal Springs Family Waterpark',
         position: {lat: 40.408711, lng: -74.445983},
-        animation: google.maps.Animation.DROP,
-        showInfo: false
-      },
-      {
-        id: 'costco-wholesale',
-        title: 'Costco Wholesale',
-        position: {lat: 40.436565, lng: -74.507282},
         animation: google.maps.Animation.DROP,
         showInfo: false
       },
@@ -53,6 +46,13 @@ class App extends Component {
         id: 'pro-skate',
         title: 'Pro Skate',
         position: {lat: 40.415439, lng: -74.528226},
+        animation: google.maps.Animation.DROP,
+        showInfo: false
+      },
+      {
+        id: 'regal-commerece-center-stadium-18',
+        title: 'Regal Commerce Center Stadium 18',
+        position: {lat: 40.443312, lng: -74.503794},
         animation: google.maps.Animation.DROP,
         showInfo: false
       }
@@ -81,7 +81,8 @@ class App extends Component {
           <div className="list-locations">
             {markers.map(marker => (
               <div key={marker.id}>
-                <p>{marker.title}</p>
+                <button className="list-button" type="button"
+                  onClick={() => {this.toggleInfoWindow(marker)}}>{marker.title}</button>
                 <hr/>
               </div>
             ))}
