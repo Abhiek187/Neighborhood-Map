@@ -106,7 +106,7 @@ class App extends Component {
           <div className="list-locations">
             {markers.filter(marker => marker.isVisible).map(marker => (
               <div key={marker.id}>
-                <button className="list-button" type="button"
+                <button className={marker.showInfo ? 'list-button selected' : 'list-button'} type="button"
                   onClick={() => this.toggleInfoWindow(marker)}>{marker.title}</button>
                 <hr/>
               </div>

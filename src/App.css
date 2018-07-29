@@ -33,6 +33,13 @@
 	height: 10vh;
 	text-align: left;
 	font-size: 1em;
+	cursor: pointer;
+}
+
+.list-button.selected {
+	background-color: gray;
+	color: white;
+	font-weight: bold;
 }
 
 .map,
