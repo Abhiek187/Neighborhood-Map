@@ -1,7 +1,13 @@
 /* global google */
 import React, {Component} from 'react';
 import {withGoogleMap, GoogleMap, Marker, InfoWindow} from 'react-google-maps';
+import $ from 'jquery';
 import './App.css';
+
+// cors-anywhere bypasses the cross-origin resource sharing error
+const proxy = 'https://cors-anywhere.herokuapp.com/';
+const api = 'Bearer 5gHT0N2H91kvYB8spnGJj0SD4Cub-O1qp35smS1pSrs0BFyGEayFl6W7AZWROPauJ2TU5gOcm2B1Otx' +
+  'adbNvCb0hcu_PFngOKC1f5a4QzgI5lR1gt2WeZoBa7zNeW3Yx';
 
 // Create Map component at the very top to render the entire map once
 const Map = withGoogleMap(props => (
@@ -11,7 +17,12 @@ const Map = withGoogleMap(props => (
         animation={marker.animation} visible={marker.isVisible}
         onClick={() => props.toggleInfoWindow(marker)}>
         {marker.showInfo && <InfoWindow onCloseClick={() => props.toggleInfoWindow(marker)}>
-          <div>{marker.title}</div>
+          <div key={marker.id} className="marker-window">
+            <h2 className="marker-title">{marker.title}</h2>
+            <img className="marker-image" src={marker.image} alt={marker.title}/>
+            <h3 className="marker-rating">{marker.rating}</h3>
+            <p className="marker-review">{marker.review}</p>
+          </div>
         </InfoWindow>}
       </Marker>
     ))}
@@ -23,8 +34,8 @@ class App extends Component {
     // Initial markers
     markers: [
       {
-        id: 'costco-wholesale',
-        title: 'Costco Wholesale',
+        id: 'costco',
+        title: 'Costco',
         position: {lat: 40.436565, lng: -74.507282},
         animation: google.maps.Animation.DROP,
         showInfo: false,
@@ -47,16 +58,16 @@ class App extends Component {
         isVisible: true
       },
       {
-        id: 'pro-skate',
-        title: 'Pro Skate',
+        id: 'pro-skate-nj',
+        title: 'Pro Skate NJ',
         position: {lat: 40.415439, lng: -74.528226},
         animation: google.maps.Animation.DROP,
         showInfo: false,
         isVisible: true
       },
       {
-        id: 'regal-commerece-center-stadium-18',
-        title: 'Regal Commerce Center Stadium 18',
+        id: 'regal-cinemas-commerece-center-18',
+        title: 'Regal Cinemas Commerce Center 18',
         position: {lat: 40.443312, lng: -74.503794},
         animation: google.maps.Animation.DROP,
         showInfo: false,
@@ -64,6 +75,27 @@ class App extends Component {
       }
     ]
   };
+
+  componentDidMount() {
+    // Get image and reviews from Yelp
+    const markers = [...this.state.markers];
+    markers.map(marker => {
+      this.getBusiness(marker).done(data => {
+        marker.id = data.businesses[0].id;
+        marker.image = data.businesses[0].image_url;
+        console.log(marker.id);
+        console.log(marker.image);
+        this.getReviews(marker.id).done(data => {
+          marker.rating = data.reviews[0].rating;
+          console.log(marker.rating);
+          marker.review = data.reviews[0].text;
+          console.log(marker.review);
+        }).fail((xhr, textStatus, error) => console.error(`Error: ${error}`));
+      }).fail((xhr, textStatus, error) => console.error(`Error: ${error}`));
+
+      return marker;
+    });
+  }
 
   toggleInfoWindow = marker => {
     const markers = [...this.state.markers]; // Make a copy of markers
@@ -91,6 +123,23 @@ class App extends Component {
     });
     this.setState({markers});
   };
+
+  getBusiness = marker =>
+    $.ajax({
+      url: proxy + `https://api.yelp.com/v3/businesses/search?latitude=${marker.position.lat}` +
+        `&longitude=${marker.position.lng}&term=${marker.title}`,
+      headers: {
+        Authorization: api
+      }
+    });
+
+  getReviews = id =>
+    $.ajax({
+      url: proxy + `https://api.yelp.com/v3/businesses/${id}/reviews`,
+      headers: {
+        Authorization: api
+      }
+    });
 
   render() {
     const {markers} = this.state;
