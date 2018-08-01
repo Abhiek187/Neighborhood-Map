@@ -1,4 +1,5 @@
 /* global google */
+// TODO: Responsiveness, AJAX fail message, Yelp attribution, a11y, service worker, separate files
 import React, {Component} from 'react';
 import {withGoogleMap, GoogleMap, Marker, InfoWindow} from 'react-google-maps';
 import $ from 'jquery';
@@ -20,7 +21,8 @@ const Map = withGoogleMap(props => (
           <div key={marker.id} className="marker-window">
             <a className="marker-url" href={marker.url}>{marker.title}</a>
             <img className="marker-image" src={marker.image} alt={marker.title}/>
-            {marker.reviews.map(review => (
+            {marker.reviews && marker.reviews.map(review => (
+              // An alternative to creating another div child
               <React.Fragment key={review.id}>
                 <h3 className="marker-rating">Rating: {review.rating}</h3>
                 <p className="marker-review">{review.text}</p>
@@ -77,12 +79,14 @@ class App extends Component {
         showInfo: false,
         isVisible: true
       }
-    ]
+    ],
+    // Search query
+    query: ''
   };
 
   componentDidMount() {
     // Get image and reviews from Yelp
-    const markers = [...this.state.markers];
+    const markers = [...this.state.markers]; // Make a copy of markers
     markers.map(marker => {
       this.getBusiness(marker).done(data => {
         marker.id = data.businesses[0].id;
@@ -102,22 +106,26 @@ class App extends Component {
 
       return marker;
     });
+
+    this.setState({markers}); // Set markers to the clone created above
   }
 
+  // Control marker behavior and info window when clicked
   toggleInfoWindow = marker => {
-    const markers = [...this.state.markers]; // Make a copy of markers
-    marker = markers.filter(m => m.id === marker.id)[0]
+    const markers = [...this.state.markers];
+    marker = markers.filter(m => m.id === marker.id)[0];
     marker.showInfo = !marker.showInfo;
     marker.animation = marker.showInfo ? google.maps.Animation.BOUNCE : null;
     this.setState({markers});
   };
 
+  // Filter markers based on search query
   filterLocations = event => {
     event.preventDefault();
     const markers = [...this.state.markers];
-    const query = document.querySelector('.list-search').value;
+    const query = this.state.query;
     markers.map(marker => {
-      // Marker drops if becomes visible
+      // Marker drops if it becomes visible
       if (!marker.isVisible)
         marker.animation = google.maps.Animation.DROP; // Take a chance to drop before filtering
       // Case-insensitive filter
@@ -128,11 +136,13 @@ class App extends Component {
       }
       return marker;
     });
+
     this.setState({markers});
   };
 
   getBusiness = marker =>
     $.ajax({
+      // Marker title matches title on Yelp for better search results
       url: proxy + `https://api.yelp.com/v3/businesses/search?latitude=${marker.position.lat}` +
         `&longitude=${marker.position.lng}&term=${marker.title}`,
       headers: {
@@ -153,10 +163,12 @@ class App extends Component {
 
     return (
       <div className="App">
+        {/* List view of markers */}
         <div className="list-view">
           <h1 className="list-title">Neighborhood Map</h1>
           <form className="list-form" onSubmit={e => this.filterLocations(e)}>
-            <input className="list-search" type="text" placeholder="Search location"/>
+            <input className="list-search" type="text" placeholder="Search location"
+              onChange={e => this.setState({query: e.target.value})}/>
             <input className="list-submit" type="submit" value="Search"/>
           </form>
           <div className="list-locations">
@@ -169,6 +181,7 @@ class App extends Component {
             ))}
           </div>
         </div>
+        {/* Map compoenent */}
         <Map
           loadingElement={<div className="map-loading"/>}
           containerElement={<div className="map-container"/>}
