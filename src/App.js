@@ -18,10 +18,14 @@ const Map = withGoogleMap(props => (
         onClick={() => props.toggleInfoWindow(marker)}>
         {marker.showInfo && <InfoWindow onCloseClick={() => props.toggleInfoWindow(marker)}>
           <div key={marker.id} className="marker-window">
-            <h2 className="marker-title">{marker.title}</h2>
+            <a className="marker-url" href={marker.url}>{marker.title}</a>
             <img className="marker-image" src={marker.image} alt={marker.title}/>
-            <h3 className="marker-rating">{marker.rating}</h3>
-            <p className="marker-review">{marker.review}</p>
+            {marker.reviews.map(review => (
+              <React.Fragment key={review.id}>
+                <h3 className="marker-rating">Rating: {review.rating}</h3>
+                <p className="marker-review">{review.text}</p>
+              </React.Fragment>
+            ))}
           </div>
         </InfoWindow>}
       </Marker>
@@ -82,14 +86,17 @@ class App extends Component {
     markers.map(marker => {
       this.getBusiness(marker).done(data => {
         marker.id = data.businesses[0].id;
+        marker.url = data.businesses[0].url;
         marker.image = data.businesses[0].image_url;
-        console.log(marker.id);
-        console.log(marker.image);
         this.getReviews(marker.id).done(data => {
-          marker.rating = data.reviews[0].rating;
-          console.log(marker.rating);
-          marker.review = data.reviews[0].text;
-          console.log(marker.review);
+          marker.reviews = [];
+          for (const review of data.reviews) {
+            marker.reviews.push({
+              id: review.id,
+              rating: review.rating,
+              text: review.text
+            });
+          }
         }).fail((xhr, textStatus, error) => console.error(`Error: ${error}`));
       }).fail((xhr, textStatus, error) => console.error(`Error: ${error}`));
 

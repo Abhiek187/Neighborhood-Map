@@ -53,6 +53,27 @@
 	float: right;
 }
 
+.marker-window {
+	width: 40vw;
+	height: 50vh;
+}
+
+.marker-url {
+	color: black;
+	font-weight: bold;
+	text-decoration: none;
+	font-size: 2em;
+	display: block;
+	text-align: center;
+}
+
+.marker-url:hover {
+	text-decoration: underline;
+}
+
 .marker-image {
-	width: 20em;
+	width: 30%;
+	height: auto;
+	display: block; /* Appear under title */
+	margin: 10px auto; /* Center image */
 }
