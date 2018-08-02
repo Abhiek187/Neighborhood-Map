@@ -1,5 +1,5 @@
 /* global google */
-// TODO: Responsiveness, AJAX fail message, Yelp attribution, a11y, service worker, separate files
+// TODO: Responsiveness, a11y, service worker, separate files
 import React, {Component} from 'react';
 import {withGoogleMap, GoogleMap, Marker, InfoWindow} from 'react-google-maps';
 import $ from 'jquery';
@@ -22,6 +22,7 @@ const Map = withGoogleMap(props => (
             <div key={marker.id} className="marker-window">
               <a className="marker-url" href={marker.url}>{marker.title}</a>
               <img className="marker-image" src={marker.image} alt={marker.title}/>
+              <a className="marker-yelp" href="https://www.yelp.com">Yelp Reviews</a>
               {marker.reviews ? (
                 marker.reviews.map(review => (
                   // An alternative to creating another div child
@@ -118,6 +119,24 @@ class App extends Component {
     this.setState({markers}); // Set markers to the clone created above
   }
 
+  getBusiness = marker =>
+    $.ajax({
+      // Marker title matches title on Yelp for better search results
+      url: proxy + `https://api.yelp.com/v3/businesses/search?latitude=${marker.position.lat}` +
+        `&longitude=${marker.position.lng}&term=${marker.title}`,
+      headers: {
+        Authorization: api
+      }
+    });
+
+  getReviews = id =>
+    $.ajax({
+      url: proxy + `https://api.yelp.com/v3/businesses/${id}/reviews`,
+      headers: {
+        Authorization: api
+      }
+    });
+
   // Control marker behavior and info window when clicked
   toggleInfoWindow = marker => {
     const markers = [...this.state.markers];
@@ -147,24 +166,6 @@ class App extends Component {
 
     this.setState({markers});
   };
-
-  getBusiness = marker =>
-    $.ajax({
-      // Marker title matches title on Yelp for better search results
-      url: proxy + `https://api.yelp.com/v3/businesses/search?latitude=${marker.position.lat}` +
-        `&longitude=${marker.position.lng}&term=${marker.title}`,
-      headers: {
-        Authorization: api
-      }
-    });
-
-  getReviews = id =>
-    $.ajax({
-      url: proxy + `https://api.yelp.com/v3/businesses/${id}/reviews`,
-      headers: {
-        Authorization: api
-      }
-    });
 
   render() {
     const {markers} = this.state;

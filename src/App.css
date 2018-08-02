@@ -58,16 +58,21 @@
 	height: 50vh;
 }
 
-.marker-url {
-	color: black;
+.marker-url,
+.marker-yelp {
 	font-weight: bold;
 	text-decoration: none;
-	font-size: 2em;
-	display: block;
+	display: block; /* Allow link to be centered */
 	text-align: center;
 }
 
-.marker-url:hover {
+.marker-url {
+	color: black;
+	font-size: 2em;
+}
+
+.marker-url:hover,
+.marker-yelp:hover {
 	text-decoration: underline;
 }
 
@@ -76,6 +81,11 @@
 	height: auto;
 	display: block; /* Appear under title */
 	margin: 10px auto; /* Center image */
+}
+
+.marker-yelp {
+	color: orangered;
+	font-size: 1.5em;
 }
 
 .error-message {
