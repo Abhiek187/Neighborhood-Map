@@ -18,17 +18,25 @@ const Map = withGoogleMap(props => (
         animation={marker.animation} visible={marker.isVisible}
         onClick={() => props.toggleInfoWindow(marker)}>
         {marker.showInfo && <InfoWindow onCloseClick={() => props.toggleInfoWindow(marker)}>
-          <div key={marker.id} className="marker-window">
-            <a className="marker-url" href={marker.url}>{marker.title}</a>
-            <img className="marker-image" src={marker.image} alt={marker.title}/>
-            {marker.reviews && marker.reviews.map(review => (
-              // An alternative to creating another div child
-              <React.Fragment key={review.id}>
-                <h3 className="marker-rating">Rating: {review.rating}</h3>
-                <p className="marker-review">{review.text}</p>
-              </React.Fragment>
-            ))}
-          </div>
+          {marker.url ? (
+            <div key={marker.id} className="marker-window">
+              <a className="marker-url" href={marker.url}>{marker.title}</a>
+              <img className="marker-image" src={marker.image} alt={marker.title}/>
+              {marker.reviews ? (
+                marker.reviews.map(review => (
+                  // An alternative to creating another div child
+                  <React.Fragment key={review.id}>
+                    <h3 className="marker-rating">Rating: {review.rating}</h3>
+                    <p className="marker-review">{review.text}</p>
+                  </React.Fragment>
+                ))
+              ) : (
+                <h3 className="error-message">Error! Yelp reviews were unable to load.</h3>
+              )}
+            </div>
+          ) : (
+            <h3 className="error-message">Error! Yelp could not find the location selected.</h3>
+          )}
         </InfoWindow>}
       </Marker>
     ))}

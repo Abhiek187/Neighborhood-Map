@@ -77,3 +77,8 @@
 	display: block; /* Appear under title */
 	margin: 10px auto; /* Center image */
 }
+
+.error-message {
+	color: red;
+	text-align: center;
+}
