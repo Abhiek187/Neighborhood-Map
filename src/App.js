@@ -21,22 +21,24 @@ const Map = withGoogleMap(props => (
           {marker.url ? (
             <div key={marker.id} className="marker-window">
               <a className="marker-url" href={marker.url}>{marker.title}</a>
-              <img className="marker-image" src={marker.image} alt={marker.title}/>
+              <img className="marker-image" src={marker.image} alt={marker.title} tabIndex={0}/>
               <a className="marker-yelp" href="https://www.yelp.com">Yelp Reviews</a>
               {marker.reviews ? (
                 marker.reviews.map(review => (
                   // An alternative to creating another div child
                   <React.Fragment key={review.id}>
-                    <h3 className="marker-rating">Rating: {review.rating}</h3>
-                    <p className="marker-review">{review.text}</p>
+                    <h3 className="marker-rating" tabIndex={0}>Rating: {review.rating}</h3>
+                    <p className="marker-review" tabIndex={0}>{review.text}</p>
                   </React.Fragment>
                 ))
               ) : (
-                <h3 className="error-message">Error! Yelp reviews were unable to load.</h3>
+                <h3 className="error-message" tabIndex={0}>Error! Yelp reviews were unable to load.</h3>
               )}
             </div>
           ) : (
-            <h3 className="error-message">Error! Yelp could not find the location selected.</h3>
+            <h3 className="error-message" tabIndex={0}>
+              Error! Yelp could not find the location selected.
+            </h3>
           )}
         </InfoWindow>}
       </Marker>
@@ -97,6 +99,10 @@ class App extends Component {
     // Get image and reviews from Yelp
     const markers = [...this.state.markers]; // Make a copy of markers
     markers.map(marker => {
+      // Click focused marker when user hits enter
+      document.addEventListener('keyup', event =>
+        event.keyCode === 13 && event.target.title === marker.title && this.toggleInfoWindow(marker)
+      );
       this.getBusiness(marker).done(data => {
         marker.id = data.businesses[0].id;
         marker.url = data.businesses[0].url;
@@ -169,12 +175,16 @@ class App extends Component {
 
   render() {
     const {markers} = this.state;
+    // Apply focus to all markers
+    const mapElements = [...document.querySelectorAll('.gmnoprint')].slice(0, markers.length);
+    console.log(mapElements);
+    mapElements.map(element => element.tabIndex = 0);
 
     return (
       <div className="App">
         {/* List view of markers */}
         <div className="list-view">
-          <h1 className="list-title">Neighborhood Map</h1>
+          <h1 className="list-title" tabIndex={0}>Neighborhood Map</h1>
           <form className="list-form" onSubmit={e => this.filterLocations(e)}>
             <input className="list-search" type="text" placeholder="Search location"
               onChange={e => this.setState({query: e.target.value})}/>
