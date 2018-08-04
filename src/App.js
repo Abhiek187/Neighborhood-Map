@@ -1,50 +1,16 @@
 /* global google */
 // TODO: Responsiveness, a11y, service worker, separate files
 import React, {Component} from 'react';
-import {withGoogleMap, GoogleMap, Marker, InfoWindow} from 'react-google-maps';
 import $ from 'jquery';
 import './App.css';
+import ListView from './ListView';
+import NeighborhoodMap from './NeighborhoodMap';
 
 // cors-anywhere bypasses the cross-origin resource sharing error
 const proxy = 'https://cors-anywhere.herokuapp.com/';
+//const proxy = 'https://crossorigin.me/';
 const api = 'Bearer 5gHT0N2H91kvYB8spnGJj0SD4Cub-O1qp35smS1pSrs0BFyGEayFl6W7AZWROPauJ2TU5gOcm2B1Otx' +
   'adbNvCb0hcu_PFngOKC1f5a4QzgI5lR1gt2WeZoBa7zNeW3Yx';
-
-// Create Map component at the very top to render the entire map once
-const Map = withGoogleMap(props => (
-  <GoogleMap defaultCenter={{lat: 40.441643, lng: -74.511790}} defaultZoom={12}>
-    {props.markers.map(marker => (
-      <Marker key={marker.id} title={marker.title} position={marker.position}
-        animation={marker.animation} visible={marker.isVisible}
-        onClick={() => props.toggleInfoWindow(marker)}>
-        {marker.showInfo && <InfoWindow onCloseClick={() => props.toggleInfoWindow(marker)}>
-          {marker.url ? (
-            <div key={marker.id} className="marker-window">
-              <a className="marker-url" href={marker.url}>{marker.title}</a>
-              <img className="marker-image" src={marker.image} alt={marker.title} tabIndex={0}/>
-              <a className="marker-yelp" href="https://www.yelp.com">Yelp Reviews</a>
-              {marker.reviews ? (
-                marker.reviews.map(review => (
-                  // An alternative to creating another div child
-                  <React.Fragment key={review.id}>
-                    <h3 className="marker-rating" tabIndex={0}>Rating: {review.rating}</h3>
-                    <p className="marker-review" tabIndex={0}>{review.text}</p>
-                  </React.Fragment>
-                ))
-              ) : (
-                <h3 className="error-message" tabIndex={0}>Error! Yelp reviews were unable to load.</h3>
-              )}
-            </div>
-          ) : (
-            <h3 className="error-message" tabIndex={0}>
-              Error! Yelp could not find the location selected.
-            </h3>
-          )}
-        </InfoWindow>}
-      </Marker>
-    ))}
-  </GoogleMap>
-));
 
 class App extends Component {
   state = {
@@ -90,9 +56,7 @@ class App extends Component {
         showInfo: false,
         isVisible: true
       }
-    ],
-    // Search query
-    query: ''
+    ]
   };
 
   componentDidMount() {
@@ -101,7 +65,7 @@ class App extends Component {
     markers.map(marker => {
       // Click focused marker when user hits enter
       document.addEventListener('keyup', event =>
-        event.keyCode === 13 && event.target.title === marker.title && this.toggleInfoWindow(marker)
+        event.target.title === marker.title && event.keyCode === 13 && this.toggleInfoWindow(marker)
       );
       this.getBusiness(marker).done(data => {
         marker.id = data.businesses[0].id;
@@ -153,10 +117,9 @@ class App extends Component {
   };
 
   // Filter markers based on search query
-  filterLocations = event => {
+  filterLocations = (event, query) => {
     event.preventDefault();
     const markers = [...this.state.markers];
-    const query = this.state.query;
     markers.map(marker => {
       // Marker drops if it becomes visible
       if (!marker.isVisible)
@@ -177,36 +140,13 @@ class App extends Component {
     const {markers} = this.state;
     // Apply focus to all markers
     const mapElements = [...document.querySelectorAll('.gmnoprint')].slice(0, markers.length);
-    console.log(mapElements);
     mapElements.map(element => element.tabIndex = 0);
 
     return (
       <div className="App">
-        {/* List view of markers */}
-        <div className="list-view">
-          <h1 className="list-title" tabIndex={0}>Neighborhood Map</h1>
-          <form className="list-form" onSubmit={e => this.filterLocations(e)}>
-            <input className="list-search" type="text" placeholder="Search location"
-              onChange={e => this.setState({query: e.target.value})}/>
-            <input className="list-submit" type="submit" value="Search"/>
-          </form>
-          <div className="list-locations">
-            {markers.filter(marker => marker.isVisible).map(marker => (
-              <div key={marker.id}>
-                <button className={marker.showInfo ? 'list-button selected' : 'list-button'} type="button"
-                  onClick={() => this.toggleInfoWindow(marker)}>{marker.title}</button>
-                <hr/>
-              </div>
-            ))}
-          </div>
-        </div>
-        {/* Map compoenent */}
-        <Map
-          loadingElement={<div className="map-loading"/>}
-          containerElement={<div className="map-container"/>}
-          mapElement={<div className="map"/>}
-          markers={markers}
-          toggleInfoWindow={this.toggleInfoWindow}/>
+        <ListView markers={markers} onToggleInfoWindow={this.toggleInfoWindow}
+          onFilterLocations={this.filterLocations}/>
+        <NeighborhoodMap markers={markers} onToggleInfoWindow={this.toggleInfoWindow}/>
       </div>
     );
   }
