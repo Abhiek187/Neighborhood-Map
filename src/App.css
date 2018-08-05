@@ -12,7 +12,34 @@
 }
 
 .list-view.hidden {
-	left: -50vw;
+	left: -47vw;
+}
+
+@media screen and (min-width: 600px) {
+	.list-view {
+		width: 45vw;
+	}
+
+	.list-view.hidden {
+		left: -38vw;
+	}
+}
+
+.list-side {
+	width: 3em;
+	float: right;
+}
+
+.list-main {
+	width: calc(100% - 3em);
+	visibility: visible;
+	opacity: 1;
+	transition: opacity 1s, visibility 1s; /* Hide list view once it goes offscreen */
+}
+
+.list-main.hidden {
+	visibility: hidden;
+	opacity: 0;
 }
 
 .list-toggle {
@@ -24,8 +51,14 @@
 	text-align: center;
 }
 
+@media screen and (max-width: 450px) {
+	.list-title {
+		font-size: 1.3em;
+	}
+}
+
 .list-search {
-	width: 80%;
+	width: calc(100% - 64px); /* Have search bar fit the rest of the form div */
 	height: 25px;
 }
 
@@ -33,10 +66,11 @@
 	background-color: blue;
 	color: white;
 	height: 31px; /* Height must be 6px higher than .list-search */
+	width: 60px;
 }
 
 .list-locations {
-	margin: 5% 10%;
+	margin: 5px 10px;
 }
 
 .list-button {
@@ -64,7 +98,7 @@
 
 .map-container {
 	height: 100vh; /* Required for map to appear */
-	width: 100vw;
+	width: 93vw;
 	float: right;
 }
 
