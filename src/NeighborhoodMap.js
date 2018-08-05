@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {withGoogleMap, GoogleMap, Marker, InfoWindow} from 'react-google-maps';
+import PropTypes from 'prop-types';
 
 // Create Map component at the very top to render the entire map once
 const Map = withGoogleMap(props => (
@@ -38,6 +39,12 @@ const Map = withGoogleMap(props => (
 ));
 
 class NeighborhoodMap extends Component {
+	// Ensure props are the right variable type
+	static propTypes = {
+		markers: PropTypes.array.isRequired,
+		onToggleInfoWindow: PropTypes.func.isRequired
+	};
+
 	render() {
 		const {markers, onToggleInfoWindow} = this.props;
 
