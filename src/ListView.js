@@ -1,17 +1,31 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
+import menu from './menu.svg';
 
 class ListView extends Component {
+	// Ensure props are the right variable type
+	static propTypes = {
+		markers: PropTypes.array.isRequired,
+		onToggleInfoWindow: PropTypes.func.isRequired,
+		onFilterLocations: PropTypes.func.isRequired
+	};
+
 	state = {
 		// Search query
-		query: ''
+		query: '',
+		// Is list view hidden?
+		isHidden: true
 	};
 
 	render() {
 		const {markers, onToggleInfoWindow, onFilterLocations} = this.props;
-		const {query} = this.state;
+		const {query, isHidden} = this.state;
 
 		return (
-			<div className="list-view">
+			<div className={isHidden ? 'list-view hidden' : 'list-view'}>
+        <input className="list-toggle" type="image" src={menu}
+        	alt={isHidden ? 'Show list view' : 'Hide list view'}
+        	onClick={() => this.setState({isHidden: !isHidden})}/>
         <h1 className="list-title" tabIndex={0}>Neighborhood Map</h1>
         <form className="list-form" onSubmit={e => onFilterLocations(e, query)}>
           <input className="list-search" type="text" placeholder="Search location"

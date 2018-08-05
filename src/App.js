@@ -1,5 +1,5 @@
 /* global google */
-// TODO: Responsiveness, a11y, service worker, separate files
+// TODO: Responsiveness, a11y, service worker
 import React, {Component} from 'react';
 import $ from 'jquery';
 import './App.css';
@@ -8,7 +8,7 @@ import NeighborhoodMap from './NeighborhoodMap';
 
 // cors-anywhere bypasses the cross-origin resource sharing error
 const proxy = 'https://cors-anywhere.herokuapp.com/';
-//const proxy = 'https://crossorigin.me/';
+//const proxy = 'https://crossorigin.me/'; // Backup in case cors-anywhere is down
 const api = 'Bearer 5gHT0N2H91kvYB8spnGJj0SD4Cub-O1qp35smS1pSrs0BFyGEayFl6W7AZWROPauJ2TU5gOcm2B1Otx' +
   'adbNvCb0hcu_PFngOKC1f5a4QzgI5lR1gt2WeZoBa7zNeW3Yx';
 

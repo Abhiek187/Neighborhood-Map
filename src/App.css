@@ -1,9 +1,23 @@
+/* List View */
 .list-view {
 	height: 100vh;
-	width: 25%;
+	width: 60vw;
 	background-color: black;
 	color: gray;
 	float: left;
+	transition: 1s;
+	left: 0;
+	position: absolute; /* Will allow div to slide */
+	z-index: 100;
+}
+
+.list-view.hidden {
+	left: -50vw;
+}
+
+.list-toggle {
+	width: 3em;
+	float: right;
 }
 
 .list-title {
@@ -42,6 +56,7 @@
 	font-weight: bold;
 }
 
+/* Neighborhood Map */
 .map,
 .map-loading {
 	height: 100%;
@@ -49,7 +64,7 @@
 
 .map-container {
 	height: 100vh; /* Required for map to appear */
-	width: 75%;
+	width: 100vw;
 	float: right;
 }
 
