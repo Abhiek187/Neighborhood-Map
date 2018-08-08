@@ -141,3 +141,8 @@
 	color: red;
 	text-align: center;
 }
+
+.error-message.google {
+	margin: 0; /* Keep list view as it is */
+	padding: 40vh 10px 0 100px;
+}

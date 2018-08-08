@@ -1,5 +1,4 @@
 /* global google */
-// TODO: Responsiveness, a11y, service worker
 import React, {Component} from 'react';
 import $ from 'jquery';
 import './App.css';
@@ -11,6 +10,8 @@ const proxy = 'https://cors-anywhere.herokuapp.com/';
 //const proxy = 'https://crossorigin.me/'; // Backup in case cors-anywhere is down
 const api = 'Bearer 5gHT0N2H91kvYB8spnGJj0SD4Cub-O1qp35smS1pSrs0BFyGEayFl6W7AZWROPauJ2TU5gOcm2B1Otx' +
   'adbNvCb0hcu_PFngOKC1f5a4QzgI5lR1gt2WeZoBa7zNeW3Yx';
+// Define google if it's not defined already
+window.google = typeof google !== 'undefined' ? google : null;
 
 class App extends Component {
   state = {
@@ -20,7 +21,7 @@ class App extends Component {
         id: 'costco',
         title: 'Costco',
         position: {lat: 40.436565, lng: -74.507282},
-        animation: google.maps.Animation.DROP,
+        animation: google && google.maps.Animation.DROP,
         showInfo: false,
         isVisible: true
       },
@@ -28,7 +29,7 @@ class App extends Component {
         id: 'crystal-springs-family-waterpark',
         title: 'Crystal Springs Family Waterpark',
         position: {lat: 40.408711, lng: -74.445983},
-        animation: google.maps.Animation.DROP,
+        animation: google && google.maps.Animation.DROP,
         showInfo: false,
         isVisible: true
       },
@@ -36,7 +37,7 @@ class App extends Component {
         id: 'milltown-ice-cream-depot',
         title: 'Milltown Ice Cream Depot',
         position: {lat: 40.453293, lng: -74.434404},
-        animation: google.maps.Animation.DROP,
+        animation: google && google.maps.Animation.DROP,
         showInfo: false,
         isVisible: true
       },
@@ -44,7 +45,7 @@ class App extends Component {
         id: 'pro-skate-nj',
         title: 'Pro Skate NJ',
         position: {lat: 40.415439, lng: -74.528226},
-        animation: google.maps.Animation.DROP,
+        animation: google && google.maps.Animation.DROP,
         showInfo: false,
         isVisible: true
       },
@@ -52,7 +53,7 @@ class App extends Component {
         id: 'regal-cinemas-commerece-center-18',
         title: 'Regal Cinemas Commerce Center 18',
         position: {lat: 40.443312, lng: -74.503794},
-        animation: google.maps.Animation.DROP,
+        animation: google && google.maps.Animation.DROP,
         showInfo: false,
         isVisible: true
       }
@@ -112,7 +113,7 @@ class App extends Component {
     const markers = [...this.state.markers];
     marker = markers.filter(m => m.id === marker.id)[0];
     marker.showInfo = !marker.showInfo;
-    marker.animation = marker.showInfo ? google.maps.Animation.BOUNCE : null;
+    marker.animation = marker.showInfo && google ? google.maps.Animation.BOUNCE : null;
     this.setState({markers});
   };
 
@@ -122,7 +123,7 @@ class App extends Component {
     const markers = [...this.state.markers];
     markers.map(marker => {
       // Marker drops if it becomes visible
-      if (!marker.isVisible)
+      if (!marker.isVisible && google)
         marker.animation = google.maps.Animation.DROP; // Take a chance to drop before filtering
       // Case-insensitive filter
       marker.isVisible = marker.title.toLowerCase().includes(query.toLowerCase());
@@ -146,7 +147,11 @@ class App extends Component {
       <div className="App">
         <ListView markers={markers} onToggleInfoWindow={this.toggleInfoWindow}
           onFilterLocations={this.filterLocations}/>
-        <NeighborhoodMap markers={markers} onToggleInfoWindow={this.toggleInfoWindow}/>
+        {google ? (
+          <NeighborhoodMap markers={markers} onToggleInfoWindow={this.toggleInfoWindow}/>
+        ) : (
+          <h1 class="error-message google" tabIndex={0}>Error! Google Maps was unable to load.</h1>
+        )}
       </div>
     );
   }
