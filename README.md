@@ -10,7 +10,11 @@ This site was built using React and utilizes Google Maps via [react-google-maps]
 
 ## Running the Program
 
-To run:
+Click on [this site](https://abhiek187.github.io/Neighborhood-Map) to run the website on Github Pages.
+
+-OR-
+
+To run a local copy (does not work offline):
   1. [Clone this repository](https://github.com/Abhiek187/Neighborhood-Map.git)
   2. `cd` into this directory
   3. Run `npm install`
