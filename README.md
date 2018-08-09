@@ -14,8 +14,19 @@ Click on [this site](https://abhiek187.github.io/Neighborhood-Map) to run the we
 
 -OR-
 
-To run a local copy (does not work offline):
+To run a local copy:
   1. [Clone this repository](https://github.com/Abhiek187/Neighborhood-Map.git)
   2. `cd` into this directory
   3. Run `npm install`
-  4. Run `npm start` and the page should load automatically. (Else, open `http://localhost:3000` in your browser.)
+
+  **For a production build**
+  - Run the following:
+  ```
+  npm run build
+  serve -s build
+  ```
+
+  - Then open `http://localhost:5000` in your browser.
+
+  **For a development build (does not work offline)**
+  - Run `npm start` and the page should load automatically. (Else, open `http://localhost:3000` in your browser.)
