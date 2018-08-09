@@ -4,6 +4,7 @@ import $ from 'jquery';
 import './App.css';
 import ListView from './ListView';
 import NeighborhoodMap from './NeighborhoodMap';
+import markerData from './markers.json';
 
 // cors-anywhere bypasses the cross-origin resource sharing error
 const proxy = 'https://cors-anywhere.herokuapp.com/';
@@ -16,58 +17,21 @@ window.google = typeof google !== 'undefined' ? google : null;
 class App extends Component {
   state = {
     // Initial markers
-    markers: [
-      {
-        id: 'costco',
-        title: 'Costco',
-        position: {lat: 40.436565, lng: -74.507282},
-        animation: google && google.maps.Animation.DROP,
-        showInfo: false,
-        isVisible: true
-      },
-      {
-        id: 'crystal-springs-family-waterpark',
-        title: 'Crystal Springs Family Waterpark',
-        position: {lat: 40.408711, lng: -74.445983},
-        animation: google && google.maps.Animation.DROP,
-        showInfo: false,
-        isVisible: true
-      },
-      {
-        id: 'milltown-ice-cream-depot',
-        title: 'Milltown Ice Cream Depot',
-        position: {lat: 40.453293, lng: -74.434404},
-        animation: google && google.maps.Animation.DROP,
-        showInfo: false,
-        isVisible: true
-      },
-      {
-        id: 'pro-skate-nj',
-        title: 'Pro Skate NJ',
-        position: {lat: 40.415439, lng: -74.528226},
-        animation: google && google.maps.Animation.DROP,
-        showInfo: false,
-        isVisible: true
-      },
-      {
-        id: 'regal-cinemas-commerece-center-18',
-        title: 'Regal Cinemas Commerce Center 18',
-        position: {lat: 40.443312, lng: -74.503794},
-        animation: google && google.maps.Animation.DROP,
-        showInfo: false,
-        isVisible: true
-      }
-    ]
+    markers: JSON.parse(JSON.stringify(markerData))
   };
 
   componentDidMount() {
-    // Get image and reviews from Yelp
     const markers = [...this.state.markers]; // Make a copy of markers
     markers.map(marker => {
+      // Set common properties of all markers
+      marker.animation = google.maps.Animation.DROP;
+      marker.showInfo = false;
+      marker.isVisible = true;
       // Click focused marker when user hits enter
       document.addEventListener('keyup', event =>
         event.target.title === marker.title && event.keyCode === 13 && this.toggleInfoWindow(marker)
       );
+      // Get image and reviews from Yelp
       this.getBusiness(marker).done(data => {
         marker.id = data.businesses[0].id;
         marker.url = data.businesses[0].url;
@@ -150,7 +114,7 @@ class App extends Component {
         {google ? (
           <NeighborhoodMap markers={markers} onToggleInfoWindow={this.toggleInfoWindow}/>
         ) : (
-          <h1 class="error-message google" tabIndex={0}>Error! Google Maps was unable to load.</h1>
+          <h1 className="error-message google" tabIndex={0}>Error! Google Maps was unable to load.</h1>
         )}
       </div>
     );

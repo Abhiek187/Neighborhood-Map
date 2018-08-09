@@ -35,15 +35,15 @@ class ListView extends Component {
               onChange={e => this.setState({query: e.target.value})}/>
             <input className="list-submit" type="submit" value="Search"/>
           </form>
-          <div className="list-locations">
+          <ul className="list-locations">
             {markers.filter(marker => marker.isVisible).map(marker => (
-              <div key={marker.id}>
+              <li key={marker.id}>
                 <button className={marker.showInfo ? 'list-button selected' : 'list-button'} type="button"
                   onClick={() => onToggleInfoWindow(marker)}>{marker.title}</button>
                 <hr/>
-              </div>
+              </li>
             ))}
-          </div>
+          </ul>
         </div>
       </div>
     );

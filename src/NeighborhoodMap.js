@@ -50,7 +50,9 @@ class NeighborhoodMap extends Component {
 
 		return (
 			<Map loadingElement={<div className="map-loading"/>}
-				containerElement={<div className="map-container"/>} mapElement={<div className="map"/>}
+				containerElement={<div className="map-container"/>}
+        mapElement={<div className="map" role="application" tabIndex={0}
+          aria-label="Map of neighborhood"/>}
         markers={markers} onToggleInfoWindow={onToggleInfoWindow}/>
 		);
 	}

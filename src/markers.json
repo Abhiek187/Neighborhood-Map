@@ -1,0 +1,27 @@
+[
+  {
+    "id": "costco",
+    "title": "Costco",
+    "position": {"lat": 40.436565, "lng": -74.507282}
+  },
+  {
+    "id": "crystal-springs-family-waterpark",
+    "title": "Crystal Springs Family Waterpark",
+    "position": {"lat": 40.408711, "lng": -74.445983}
+  },
+  {
+    "id": "milltown-ice-cream-depot",
+    "title": "Milltown Ice Cream Depot",
+    "position": {"lat": 40.453293, "lng": -74.434404}
+  },
+  {
+    "id": "pro-skate-nj",
+    "title": "Pro Skate NJ",
+    "position": {"lat": 40.415439, "lng": -74.528226}
+  },
+  {
+    "id": "regal-cinemas-commerece-center-18",
+    "title": "Regal Cinemas Commerce Center 18",
+    "position": {"lat": 40.443312, "lng": -74.503794}
+  }
+]
