@@ -139,12 +139,18 @@
 	font-size: 1.5em;
 }
 
+.loading {
+	text-align: center;
+	margin: 0; /* Keep list view as it is */
+	padding: 40vh 10px 0 100px;
+}
+
 .error-message {
 	color: red;
 	text-align: center;
 }
 
 .error-message.google {
-	margin: 0; /* Keep list view as it is */
+	margin: 0;
 	padding: 40vh 10px 0 100px;
 }

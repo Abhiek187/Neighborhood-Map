@@ -38,6 +38,11 @@ const Map = withGoogleMap(props => (
   </GoogleMap>
 ));
 
+// Alert when Google Maps authentication fails
+window.gm_authFailure = () => {
+  alert('Google Maps authentication failed.');
+};
+
 class NeighborhoodMap extends Component {
 	// Ensure props are the right variable type
 	static propTypes = {
