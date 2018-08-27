@@ -6,7 +6,7 @@ This website shows you a map of a neighborhood close by, allowing users to mark 
 
 ## Dependencies
 
-This site was built using React and utilizes Google Maps via [react-google-maps](https://tomchentw.github.io/react-google-maps). Yelp images & reviews are provided through [Yelp Fusion](https://www.yelp.com/fusion). It is mobile friendly, accessible, and can work offline through a Service Worker.
+This site was built using React and utilizes Google Maps via [react-google-maps](https://tomchentw.github.io/react-google-maps) and [react-async-script-loader](https://www.npmjs.com/package/react-async-script-loader). Yelp images & reviews are provided through [Yelp Fusion](https://www.yelp.com/fusion). It is mobile friendly, accessible, and can work offline through a Service Worker.
 
 ## Running the Program
 
