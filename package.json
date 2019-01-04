@@ -6,11 +6,11 @@
     "jquery": "^3.3.1",
     "merge": "^1.2.1",
     "prop-types": "^15.6.2",
-    "react": "^16.4.1",
+    "react": "^16.7.0",
     "react-async-script-loader": "^0.3.0",
-    "react-dom": "^16.4.1",
+    "react-dom": "^16.7.0",
     "react-google-maps": "^9.4.5",
-    "react-scripts": "1.1.4"
+    "react-scripts": "2.1.3"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -22,6 +22,6 @@
   },
   "homepage": "http://abhiek187.github.io/Neighborhood-Map",
   "devDependencies": {
-    "gh-pages": "^1.2.0"
+    "gh-pages": "^2.0.1"
   }
 }
