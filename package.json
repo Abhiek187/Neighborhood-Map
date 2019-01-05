@@ -24,5 +24,11 @@
   "homepage": "http://abhiek187.github.io/Neighborhood-Map",
   "devDependencies": {
     "gh-pages": "^2.0.1"
-  }
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }
