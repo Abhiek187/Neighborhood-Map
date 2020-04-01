@@ -4,8 +4,9 @@
   "private": true,
   "dependencies": {
     "eslint": "^5.16.0",
-    "handlebars": ">=4.3.0",
+    "handlebars": "^4.7.4",
     "jquery": "^3.4.1",
+    "kind-of": "^6.0.3",
     "lodash": ">=4.17.11",
     "merge": "^1.2.1",
     "prop-types": "^15.6.2",
@@ -13,7 +14,7 @@
     "react-async-script-loader": "^0.3.0",
     "react-dom": "^16.7.0",
     "react-google-maps": "^9.4.5",
-    "react-scripts": "^3.0.1"
+    "react-scripts": "^3.4.1"
   },
   "scripts": {
     "start": "react-scripts start",
