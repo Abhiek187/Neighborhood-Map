@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "acorn": "^7.1.1",
+    "acorn": ">=5.7.4",
     "handlebars": "^4.7.4",
     "jquery": "^3.5.0",
     "kind-of": "^6.0.3",
