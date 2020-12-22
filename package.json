@@ -13,12 +13,13 @@
     "merge": "^1.2.1",
     "node-fetch": ">=2.6.1",
     "node-forge": ">=0.10.0",
+    "node-notifier": ">=8.0.1",
     "prop-types": "^15.6.2",
     "react": "^16.7.0",
     "react-async-script-loader": "^0.3.0",
     "react-dom": "^16.7.0",
     "react-google-maps": "^9.4.5",
-    "react-scripts": "^3.4.3",
+    "react-scripts": "^4.0.1",
     "yargs-parser": ">=13.1.2"
   },
   "scripts": {
