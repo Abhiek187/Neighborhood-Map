@@ -20,7 +20,7 @@
     "react-dom": "^16.7.0",
     "react-google-maps": "^9.4.5",
     "react-scripts": "^4.0.1",
-    "urijs": ">=1.19.4",
+    "urijs": ">=1.19.6",
     "yargs-parser": ">=13.1.2"
   },
   "scripts": {
