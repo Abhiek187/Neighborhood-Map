@@ -22,6 +22,7 @@
     "react-google-maps": "^9.4.5",
     "react-scripts": "^4.0.1",
     "urijs": ">=1.19.6",
+    "y18n": ">=3.2.2",
     "yargs-parser": ">=13.1.2"
   },
   "scripts": {
