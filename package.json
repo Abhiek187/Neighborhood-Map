@@ -16,7 +16,7 @@
     "node-forge": ">=0.10.0",
     "node-notifier": ">=8.0.1",
     "prop-types": "^15.6.2",
-    "react": "^16.7.0",
+    "react": "^16.14.0",
     "react-async-script-loader": "^0.3.0",
     "react-dom": "^16.7.0",
     "react-google-maps": "^9.4.5",
@@ -36,6 +36,9 @@
   },
   "homepage": "http://abhiek187.github.io/Neighborhood-Map",
   "devDependencies": {
+    "@types/googlemaps": "^3.43.3",
+    "@types/markerclustererplus": "^2.1.33",
+    "@types/react": "^16.14.5",
     "gh-pages": "^2.0.1"
   },
   "browserslist": [
