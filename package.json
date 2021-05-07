@@ -20,7 +20,7 @@
     "react-async-script-loader": "^0.3.0",
     "react-dom": "^16.7.0",
     "react-google-maps": "^9.4.5",
-    "react-scripts": "^4.0.1",
+    "react-scripts": "^4.0.3",
     "sockjs": ">=0.3.20",
     "urijs": ">=1.19.6",
     "y18n": ">=3.2.2",
