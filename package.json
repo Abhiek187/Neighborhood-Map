@@ -4,8 +4,10 @@
   "private": true,
   "dependencies": {
     "acorn": "^7.3.1",
+    "css-what": ">=5.0.1",
     "dns-packet": ">=5.2.2",
     "dot-prop": ">=4.2.1",
+    "glob-parent": ">=5.1.2",
     "handlebars": ">=4.7.7",
     "hosted-git-info": ">=2.8.9",
     "http-proxy": ">=1.18.1",
@@ -24,6 +26,7 @@
     "react-google-maps": "^9.4.5",
     "react-scripts": "^4.0.3",
     "sockjs": ">=0.3.20",
+    "trim-newlines": ">=3.0.1",
     "ua-parser-js": ">=0.7.22",
     "urijs": ">=1.19.6",
     "y18n": ">=3.2.2",
