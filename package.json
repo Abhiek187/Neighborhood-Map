@@ -46,7 +46,7 @@
     "@types/googlemaps": "^3.43.3",
     "@types/markerclustererplus": "^2.1.33",
     "@types/react": "^16.14.5",
-    "gh-pages": "^2.0.1"
+    "gh-pages": "^3.2.1"
   },
   "browserslist": [
     ">0.2%",
