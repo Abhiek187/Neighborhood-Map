@@ -1,14 +1,21 @@
 {
-  "main.css": "/Neighborhood-Map/static/css/main.abf4dd54.chunk.css",
-  "main.js": "/Neighborhood-Map/static/js/main.8c01829b.chunk.js",
-  "main.js.map": "/Neighborhood-Map/static/js/main.8c01829b.chunk.js.map",
-  "static/js/1.8dd321ac.chunk.js": "/Neighborhood-Map/static/js/1.8dd321ac.chunk.js",
-  "static/js/1.8dd321ac.chunk.js.map": "/Neighborhood-Map/static/js/1.8dd321ac.chunk.js.map",
-  "runtime~main.js": "/Neighborhood-Map/static/js/runtime~main.d5023807.js",
-  "runtime~main.js.map": "/Neighborhood-Map/static/js/runtime~main.d5023807.js.map",
-  "static/media/menu.svg": "/Neighborhood-Map/static/media/menu.9ed676bf.svg",
-  "static/css/main.abf4dd54.chunk.css.map": "/Neighborhood-Map/static/css/main.abf4dd54.chunk.css.map",
-  "index.html": "/Neighborhood-Map/index.html",
-  "precache-manifest.8fad1e584fec526fb8f3efcfe84f8429.js": "/Neighborhood-Map/precache-manifest.8fad1e584fec526fb8f3efcfe84f8429.js",
-  "service-worker.js": "/Neighborhood-Map/service-worker.js"
+  "files": {
+    "main.css": "/Neighborhood-Map/static/css/main.3d110d78.chunk.css",
+    "main.js": "/Neighborhood-Map/static/js/main.90ae9654.chunk.js",
+    "main.js.map": "/Neighborhood-Map/static/js/main.90ae9654.chunk.js.map",
+    "runtime-main.js": "/Neighborhood-Map/static/js/runtime-main.06271a50.js",
+    "runtime-main.js.map": "/Neighborhood-Map/static/js/runtime-main.06271a50.js.map",
+    "static/js/2.806ce434.chunk.js": "/Neighborhood-Map/static/js/2.806ce434.chunk.js",
+    "static/js/2.806ce434.chunk.js.map": "/Neighborhood-Map/static/js/2.806ce434.chunk.js.map",
+    "index.html": "/Neighborhood-Map/index.html",
+    "static/css/main.3d110d78.chunk.css.map": "/Neighborhood-Map/static/css/main.3d110d78.chunk.css.map",
+    "static/js/2.806ce434.chunk.js.LICENSE.txt": "/Neighborhood-Map/static/js/2.806ce434.chunk.js.LICENSE.txt",
+    "static/media/menu.8246383d.svg": "/Neighborhood-Map/static/media/menu.8246383d.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.06271a50.js",
+    "static/js/2.806ce434.chunk.js",
+    "static/css/main.3d110d78.chunk.css",
+    "static/js/main.90ae9654.chunk.js"
+  ]
 }
