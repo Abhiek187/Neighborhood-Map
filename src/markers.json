@@ -1,27 +1,27 @@
 [
   {
-    "id": "costco",
-    "title": "Costco",
-    "position": {"lat": 40.436565, "lng": -74.507282}
+    "id": "central-park-zoo",
+    "title": "Central Park Zoo",
+    "position": {"lat": 40.77043433701936, "lng": -73.97219181285352}
   },
   {
-    "id": "crystal-springs-family-waterpark",
-    "title": "Crystal Springs Family Waterpark",
-    "position": {"lat": 40.408711, "lng": -74.445983}
+    "id": "empire-state-building",
+    "title": "Empire State Building",
+    "position": {"lat": 40.75132090183999, "lng": -73.98523807665711}
   },
   {
-    "id": "milltown-ice-cream-depot",
-    "title": "Milltown Ice Cream Depot",
-    "position": {"lat": 40.453293, "lng": -74.434404}
+    "id": "liberty-science-center",
+    "title": "Liberty Science Center",
+    "position": {"lat": 40.71069957584075, "lng": -74.05509811669441}
   },
   {
-    "id": "pro-skate-nj",
-    "title": "Pro Skate NJ",
-    "position": {"lat": 40.415439, "lng": -74.528226}
+    "id": "joey-pepperoni-pizza",
+    "title": "Joey Pepperoni's Pizza",
+    "position": {"lat": 40.71824995143393, "lng": -74.00313689336635}
   },
   {
-    "id": "regal-cinemas-commerece-center-18",
-    "title": "Regal Cinemas Commerce Center 18",
-    "position": {"lat": 40.443312, "lng": -74.503794}
+    "id": "museum-of-ice-cream-nyc",
+    "title": "Museum of Ice Cream NYC",
+    "position": {"lat": 40.72389986810587, "lng": -73.99895725974783}
   }
 ]

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 // Create Map component at the very top to render the entire map once
 const Map = withGoogleMap(props => (
-  <GoogleMap defaultCenter={{lat: 40.441643, lng: -74.511790}} defaultZoom={12}>
+  <GoogleMap defaultCenter={{lat: 40.73971790095217, lng: -74.01005037971146}} defaultZoom={13}>
     {props.markers.map(marker => (
       <Marker key={marker.id} title={marker.title} position={marker.position}
         animation={marker.animation} visible={marker.isVisible}
