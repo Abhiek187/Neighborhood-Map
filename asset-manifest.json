@@ -1,21 +1,14 @@
 {
   "files": {
-    "main.css": "/Neighborhood-Map/static/css/main.3d110d78.chunk.css",
-    "main.js": "/Neighborhood-Map/static/js/main.90ae9654.chunk.js",
-    "main.js.map": "/Neighborhood-Map/static/js/main.90ae9654.chunk.js.map",
-    "runtime-main.js": "/Neighborhood-Map/static/js/runtime-main.06271a50.js",
-    "runtime-main.js.map": "/Neighborhood-Map/static/js/runtime-main.06271a50.js.map",
-    "static/js/2.806ce434.chunk.js": "/Neighborhood-Map/static/js/2.806ce434.chunk.js",
-    "static/js/2.806ce434.chunk.js.map": "/Neighborhood-Map/static/js/2.806ce434.chunk.js.map",
+    "main.css": "/Neighborhood-Map/static/css/main.89822617.css",
+    "main.js": "/Neighborhood-Map/static/js/main.3baebe1f.js",
+    "static/media/menu.svg": "/Neighborhood-Map/static/media/menu.8246383d64efa9f03a0e042da063a88a.svg",
     "index.html": "/Neighborhood-Map/index.html",
-    "static/css/main.3d110d78.chunk.css.map": "/Neighborhood-Map/static/css/main.3d110d78.chunk.css.map",
-    "static/js/2.806ce434.chunk.js.LICENSE.txt": "/Neighborhood-Map/static/js/2.806ce434.chunk.js.LICENSE.txt",
-    "static/media/menu.8246383d.svg": "/Neighborhood-Map/static/media/menu.8246383d.svg"
+    "main.89822617.css.map": "/Neighborhood-Map/static/css/main.89822617.css.map",
+    "main.3baebe1f.js.map": "/Neighborhood-Map/static/js/main.3baebe1f.js.map"
   },
   "entrypoints": [
-    "static/js/runtime-main.06271a50.js",
-    "static/js/2.806ce434.chunk.js",
-    "static/css/main.3d110d78.chunk.css",
-    "static/js/main.90ae9654.chunk.js"
+    "static/css/main.89822617.css",
+    "static/js/main.3baebe1f.js"
   ]
 }
