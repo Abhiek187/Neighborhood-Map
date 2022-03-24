@@ -1,14 +1,17 @@
 {
   "files": {
     "main.css": "/Neighborhood-Map/static/css/main.89822617.css",
-    "main.js": "/Neighborhood-Map/static/js/main.2a11b64d.js",
+    "main.js": "/Neighborhood-Map/static/js/main.3a5d7264.js",
+    "static/js/377.0b8a406c.chunk.js": "/Neighborhood-Map/static/js/377.0b8a406c.chunk.js",
+    "service-worker.js": "/Neighborhood-Map/service-worker.js",
     "static/media/menu.svg": "/Neighborhood-Map/static/media/menu.8246383d64efa9f03a0e042da063a88a.svg",
     "index.html": "/Neighborhood-Map/index.html",
     "main.89822617.css.map": "/Neighborhood-Map/static/css/main.89822617.css.map",
-    "main.2a11b64d.js.map": "/Neighborhood-Map/static/js/main.2a11b64d.js.map"
+    "main.3a5d7264.js.map": "/Neighborhood-Map/static/js/main.3a5d7264.js.map",
+    "377.0b8a406c.chunk.js.map": "/Neighborhood-Map/static/js/377.0b8a406c.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.89822617.css",
-    "static/js/main.2a11b64d.js"
+    "static/js/main.3a5d7264.js"
   ]
 }
