@@ -8,8 +8,9 @@ import NeighborhoodMap from "./NeighborhoodMap";
 import markerData from "./markers.json";
 
 // cors-anywhere bypasses the cross-origin resource sharing error
-const proxy = "https://cors-anywhere.herokuapp.com/";
-//const proxy = 'https://crossorigin.me/'; // Backup in case cors-anywhere is down
+const proxy = "https://still-waters-67678.herokuapp.com/"; // my proxy
+//const proxy = "https://cors-anywhere.herokuapp.com/"; // demo proxy
+//const proxy = "https://crossorigin.me/"; // Backup in case cors-anywhere is down
 const api =
   "Bearer 5gHT0N2H91kvYB8spnGJj0SD4Cub-O1qp35smS1pSrs0BFyGEayFl6W7AZWROPauJ2TU5gOcm2B1Otx" +
   "adbNvCb0hcu_PFngOKC1f5a4QzgI5lR1gt2WeZoBa7zNeW3Yx";
