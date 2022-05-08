@@ -8,18 +8,12 @@ window.gm_authFailure = () => {
 };
 
 const NeighborhoodMap = ({ markers, onToggleInfoWindow }) => {
-  // Ensure props are the right variable type
-  // static propTypes = {
-  //   markers: PropTypes.array.isRequired,
-  //   onToggleInfoWindow: PropTypes.func.isRequired,
-  // };
   const [map, setMap] = React.useState(null);
 
   const onLoad = React.useCallback((map) => {
     /* Set the center and zoom here instead of in GoogleMap to prevent the map from snapping
      * back to the center when closing out of an info window
      */
-    const bounds = new window.google.maps.LatLngBounds();
     map.setCenter(center);
     map.setZoom(13);
     setMap(map);
@@ -94,6 +88,12 @@ const NeighborhoodMap = ({ markers, onToggleInfoWindow }) => {
       </GoogleMap>
     </div>
   );
+};
+
+// Ensure props are the right variable type
+NeighborhoodMap.propTypes = {
+  markers: PropTypes.array.isRequired,
+  onToggleInfoWindow: PropTypes.func.isRequired,
 };
 
 export default NeighborhoodMap;
