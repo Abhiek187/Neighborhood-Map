@@ -13,26 +13,31 @@ const NeighborhoodMap = ({ markers, onToggleInfoWindow }) => {
   //   markers: PropTypes.array.isRequired,
   //   onToggleInfoWindow: PropTypes.func.isRequired,
   // };
+  const [map, setMap] = React.useState(null);
+
+  const onLoad = React.useCallback((map) => {
+    /* Set the center and zoom here instead of in GoogleMap to prevent the map from snapping
+     * back to the center when closing out of an info window
+     */
+    const bounds = new window.google.maps.LatLngBounds();
+    map.setCenter(center);
+    map.setZoom(13);
+    setMap(map);
+  }, []);
+
+  const onUnmount = React.useCallback((map) => {
+    setMap(null);
+  }, []);
 
   const center = { lat: 40.73971790095217, lng: -74.01005037971146 };
 
   return (
-    // <Map
-    //   loadingElement={<div className="map-loading" />}
-    //   containerElement={<div className="map-container" />}
-    //   mapElement={
-    //     <div
-    //       className="map"
-    //       role="application"
-    //       tabIndex={0}
-    //       aria-label="Map of neighborhood"
-    //     />
-    //   }
-    //   markers={markers}
-    //   onToggleInfoWindow={onToggleInfoWindow}
-    // />
     <div className="map-container">
-      <GoogleMap mapContainerClassName="map" center={center} zoom={13}>
+      <GoogleMap
+        mapContainerClassName="map"
+        onLoad={onLoad}
+        onUnmount={onUnmount}
+      >
         {/* Can cycle through markers using the arrow keys */}
         {markers.map((marker) => (
           <Marker
