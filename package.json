@@ -3,10 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@react-google-maps/api": "^2.10.2",
     "jquery": "^3.5.1",
     "prop-types": "^15.6.2",
     "react": "^16.14.0",
-    "react-async-script-loader": "^0.3.0",
     "react-dom": "^16.7.0",
     "react-google-maps": "^9.4.5",
     "react-scripts": "^5.0.0",
