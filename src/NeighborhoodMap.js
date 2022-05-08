@@ -118,7 +118,10 @@ const NeighborhoodMap = ({ markers, onToggleInfoWindow }) => {
             onClick={() => onToggleInfoWindow(marker)}
           >
             {marker.showInfo && (
-              <InfoWindow onCloseClick={() => onToggleInfoWindow(marker)}>
+              <InfoWindow
+                position={marker.position}
+                onCloseClick={() => onToggleInfoWindow(marker)}
+              >
                 {marker.url ? (
                   <div key={marker.id} className="marker-window">
                     <a className="marker-url" href={marker.url}>

@@ -46,7 +46,7 @@ const App = () => {
 
       setMarkers(newMarkers); // Set markers to the clone created above
     }
-  }, []);
+  }, [isLoaded]);
 
   const fetchYelpBusinessAndReviews = async (marker) => {
     // Get image and reviews from Yelp
