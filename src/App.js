@@ -1,6 +1,5 @@
 import React from "react";
 import { useJsApiLoader } from "@react-google-maps/api";
-import $ from "jquery";
 import "./App.css";
 import ListView from "./ListView";
 import NeighborhoodMap from "./NeighborhoodMap";
@@ -10,7 +9,7 @@ import markerData from "./markers.json";
 const proxy = "https://still-waters-67678.herokuapp.com/"; // my proxy
 //const proxy = "https://cors-anywhere.herokuapp.com/"; // demo proxy
 //const proxy = "https://crossorigin.me/"; // Backup in case cors-anywhere is down
-const api =
+const yelpApiKey =
   "Bearer 5gHT0N2H91kvYB8spnGJj0SD4Cub-O1qp35smS1pSrs0BFyGEayFl6W7AZWROPauJ2TU5gOcm2B1Otx" +
   "adbNvCb0hcu_PFngOKC1f5a4QzgI5lR1gt2WeZoBa7zNeW3Yx";
 
@@ -27,7 +26,7 @@ const App = () => {
     if (isLoaded) {
       // Perform asynchronous functions after Google Maps has loaded successfully
       const newMarkers = [...markers]; // Make a copy of markers
-      newMarkers.map((marker) => {
+      newMarkers.map(async (marker) => {
         // Set common properties of all markers
         marker.animation = window.google ? google.maps.Animation.DROP : null;
         marker.showInfo = false;
@@ -40,29 +39,8 @@ const App = () => {
             event.key === "Enter" &&
             toggleInfoWindow(marker)
         );
-        // Get image and reviews from Yelp
-        getBusiness(marker)
-          .done((data) => {
-            marker.id = data.businesses[0].id;
-            marker.url = data.businesses[0].url;
-            marker.image = data.businesses[0].image_url;
-            getReviews(marker.id)
-              .done((data) => {
-                marker.reviews = [];
-                for (const review of data.reviews) {
-                  marker.reviews.push({
-                    id: review.id,
-                    rating: review.rating,
-                    text: review.text,
-                  });
-                }
-              })
-              .fail((xhr, textStatus, error) =>
-                console.error(`Error: ${error}`)
-              );
-          })
-          .fail((xhr, textStatus, error) => console.error(`Error: ${error}`));
 
+        await fetchYelpBusinessAndReviews(marker);
         return marker;
       });
 
@@ -70,25 +48,44 @@ const App = () => {
     }
   }, []);
 
-  const getBusiness = (marker) =>
-    $.ajax({
+  const fetchYelpBusinessAndReviews = async (marker) => {
+    // Get image and reviews from Yelp
+    try {
       // Marker title matches title on Yelp for better search results
-      url:
-        proxy +
-        `https://api.yelp.com/v3/businesses/search?latitude=${marker.position.lat}` +
-        `&longitude=${marker.position.lng}&term=${marker.title}`,
-      headers: {
-        Authorization: api,
-      },
-    });
+      const businessUrl =
+        `${proxy}https://api.yelp.com/v3/businesses/search?latitude=${marker.position.lat}` +
+        `&longitude=${marker.position.lng}&term=${marker.title}`;
+      const businessResponse = await fetch(businessUrl, {
+        headers: {
+          Authorization: yelpApiKey,
+        },
+      });
+      const businessData = await businessResponse.json();
 
-  const getReviews = (id) =>
-    $.ajax({
-      url: proxy + `https://api.yelp.com/v3/businesses/${id}/reviews`,
-      headers: {
-        Authorization: api,
-      },
-    });
+      marker.id = businessData.businesses[0].id;
+      marker.url = businessData.businesses[0].url;
+      marker.image = businessData.businesses[0].image_url;
+
+      const reviewsUrl = `${proxy}https://api.yelp.com/v3/businesses/${marker.id}/reviews`;
+      const reviewsResponse = await fetch(reviewsUrl, {
+        headers: {
+          Authorization: yelpApiKey,
+        },
+      });
+      const reviewsData = await reviewsResponse.json();
+
+      marker.reviews = [];
+      for (const review of reviewsData.reviews) {
+        marker.reviews.push({
+          id: review.id,
+          rating: review.rating,
+          text: review.text,
+        });
+      }
+    } catch (error) {
+      console.error(`Error: ${error}`);
+    }
+  };
 
   // Control marker behavior and info window when clicked
   const toggleInfoWindow = (marker) => {
