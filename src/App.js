@@ -119,13 +119,6 @@ const App = () => {
     setMarkers(newMarkers);
   };
 
-  // Apply focus to all markers
-  const mapElements = [...document.querySelectorAll(".gmnoprint")].slice(
-    0,
-    markers.length
-  );
-  mapElements.map((element) => (element.tabIndex = 0));
-
   // Placeholder when map doesn't appear
   const placeholder = loadError ? (
     <p className="loading">Loading...</p>
