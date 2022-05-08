@@ -121,11 +121,11 @@ const App = () => {
 
   // Placeholder when map doesn't appear
   const placeholder = loadError ? (
-    <p className="loading">Loading...</p>
-  ) : (
     <h1 className="error-message google">
       Error! Google Maps was unable to load.
     </h1>
+  ) : (
+    <p className="loading">Loading...</p>
   );
 
   return (

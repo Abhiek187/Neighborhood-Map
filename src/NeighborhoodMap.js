@@ -32,13 +32,7 @@ const NeighborhoodMap = ({ markers, onToggleInfoWindow }) => {
     //   onToggleInfoWindow={onToggleInfoWindow}
     // />
     <div className="map-container">
-      <GoogleMap
-        mapContainerClassName="map"
-        center={center}
-        zoom={13}
-        onLoad={onLoad}
-        onUnmount={onUnmount}
-      >
+      <GoogleMap mapContainerClassName="map" center={center} zoom={13}>
         {/* Can cycle through markers using the arrow keys */}
         {markers.map((marker) => (
           <Marker
