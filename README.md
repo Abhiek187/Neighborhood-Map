@@ -29,7 +29,7 @@ npm run build
 serve -s build
 ```
 
-- Then open `http://localhost:5000` in your browser.
+- Then open `http://localhost:3000` in your browser.
 
 **For a development build (does not work offline)**
 
