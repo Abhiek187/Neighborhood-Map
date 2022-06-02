@@ -24,7 +24,7 @@ To run a local copy:
 
 - Run the following:
 
-```
+```bash
 npm run build
 serve -s build
 ```
