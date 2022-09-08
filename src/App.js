@@ -6,7 +6,7 @@ import NeighborhoodMap from "./NeighborhoodMap";
 import markerData from "./markers.json";
 
 // cors-anywhere bypasses the cross-origin resource sharing error
-const proxy = "https://still-waters-67678.herokuapp.com/"; // my proxy
+const proxy = "https://still-waters-67678.onrender.com/"; // my proxy
 //const proxy = "https://cors-anywhere.herokuapp.com/"; // demo proxy
 //const proxy = "https://crossorigin.me/"; // Backup in case cors-anywhere is down
 const yelpApiKey =
