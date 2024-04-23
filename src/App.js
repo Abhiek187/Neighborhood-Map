@@ -13,13 +13,20 @@ const yelpApiKey =
   "Bearer 5gHT0N2H91kvYB8spnGJj0SD4Cub-O1qp35smS1pSrs0BFyGEayFl6W7AZWROPauJ2TU5gOcm2B1Otx" +
   "adbNvCb0hcu_PFngOKC1f5a4QzgI5lR1gt2WeZoBa7zNeW3Yx";
 
+const libraries = ["marker"];
+
 const App = () => {
   // Initial markers
   const [markers, setMarkers] = React.useState(
     JSON.parse(JSON.stringify(markerData))
   );
   const { isLoaded, loadError } = useJsApiLoader({
-    googleMapsApiKey: "AIzaSyAgW5OHRMNIfawf6DfY_UpnK1MqtJyN87E",
+    // Inject loading=async for now until @react-google-maps/api v2.19.4+ is released
+    // https://github.com/JustFly1984/react-google-maps-api/issues/3334
+    googleMapsApiKey: "AIzaSyAgW5OHRMNIfawf6DfY_UpnK1MqtJyN87E&loading=async",
+    // Also waiting until Advanced Markers are supported
+    // https://github.com/JustFly1984/react-google-maps-api/issues/3250
+    libraries,
   });
 
   React.useEffect(() => {
